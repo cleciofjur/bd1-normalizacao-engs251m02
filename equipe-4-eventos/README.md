@@ -24,35 +24,52 @@ O sistema da Semana de Tecnologia hoje é uma planilha. Rode o `00_planilha.sql`
 | `planilha_fnbc` | Regra: em cada trilha, o participante tem um único mentor; cada mentor acompanha uma única trilha. |
 | `planilha_4fn` | Cada palestrante fala sobre vários temas e em vários idiomas, sem relação entre tema e idioma. |
 
-> Apague as instruções entre colchetes e preencha cada seção.
 
 ## 1. Anomalias
 
-[Usando linhas reais da `planilha`, dê um exemplo de cada anomalia.]
 
 | Anomalia | Exemplo na planilha |
 | --- | --- |
-| Inserção |  |
-| Exclusão |  |
-| Modificação |  |
+| Inserção | Não é possível cadastrar uma nova oficina sem associá-la a uma inscrição de um participante, sem deixar campos vazios ou utilizar dados fictícios. Isso ocorre porque os dados das oficinas e das inscrições estão armazenados na mesma tabela.  |
+| Exclusão | Caso sejam excluídos todos os registros da oficina O2, associados às inscrições de Hugo Santos e Caio Pinto, também serão perdidas as informações sobre a existência dessa oficina e sua localização (Lab 2).  |
+| Modificação | Caso o valor da categoria K1 (Estudante) seja alterado de R$ 50,00 para R$ 60,00, será necessário atualizar quatro registros, referentes às inscrições de Rita Gomes e Bia Moraes. Se algum registro não for atualizado, haverá inconsistência nos valores da mesma categoria. |
+
+As três anomalias são consequências da redundância de dados e do armazenamento de informações sobre participantes, inscrições, categorias e oficinas em uma única tabela. A normalização permite separar essas informações em tabelas relacionadas, garantindo maior integridade e consistência dos dados.
 
 ## 2. Dependências funcionais da `planilha`
 
-| Determinante | Determina | Tipo (total, parcial ou transitiva) |
-| --- | --- | --- |
-|  |  |  |
+| Determinante       | Determina                   | Tipo (total, parcial ou transitiva) |
+|     ---            |    ---                      |               ---                   |
+|cod_inscricao       |cod_participante             |Parcial                              |
+|cod_inscricao       |cod_categoria                |Parcial                              |
+|cod_participante    |nome_participante, emails    |Transitiva                           |
+|cod_categoria       |categoria, valor_categoria   |Transitiva                           |
+|cod_oficina         |nome_oficina, sala           |Parcial                              |
 
-**Chave primária da `planilha`:** [ ]
+**Chave primária da `planilha`:** [`cod_inscricao`, `cod_oficina`]
+
+Justificativa:
+
+1. `cod_inscricao` não é único, porque uma inscrição pode conter várias oficinas.
+2. `cod_oficina` não é único, porque uma oficina pode estar associada a várias inscrições.
+3. A combinação de ambos identifica unicamente cada registro da planilha, considerando que uma oficina não pode se repetir na mesma inscrição.
 
 ## 3. Normalização passo a passo
 
-**1FN:** [o que não era atômico e como ficou]
+**1FN:** O atributo emails não era atômico, pois armazenava múltiplos endereços de e-mail em um único campo, separados por ponto e vírgula, como nos registros de Rita Gomes e Caio Pinto. Para atender à 1FN, os e-mails foram separados em uma tabela denominada participante_email, na qual cada registro armazena um único endereço de e-mail associado ao código do participante.
 
-**2FN:** [quais dependências parciais e como ficou]
+**2FN:** Foram identificadas dependências parciais em relação à chave primária composta (cod_inscricao, cod_oficina). Os dados da inscrição dependiam apenas de cod_inscricao, enquanto o nome e a sala da oficina dependiam apenas de cod_oficina. Para eliminar essas dependências, foram criadas as tabelas inscricao e oficina, além da tabela associativa inscricao_oficina, responsável por relacionar as inscrições às oficinas.
 
-**3FN:** [quais dependências transitivas e como ficou]
+**3FN:** Foram identificadas dependências transitivas, pois nome_participante dependia de cod_participante, enquanto categoria e valor_categoria dependiam de cod_categoria. Para eliminar essas dependências, foram criadas as tabelas participante e categoria, mantendo na tabela inscricao apenas as respectivas chaves estrangeiras.
 
-**Esquema final em 3FN:** [Tabela(atributos), com PK sublinhada ou em negrito e FK indicada]
+**Esquema final em 3FN:**
+
+* participante (`cod_participante`, `nome_participante`)
+* participante_email (`cod_participante`, `email`), FK: `cod_participante`.
+* categoria (`cod_categoria`, `categoria`, `valor_categoria`)
+* oficina (`cod_oficina`, `nome_oficina`, `sala`)
+* inscricao (`cod_inscricao`, `cod_participante`, `cod_categoria`), FKs: `cod_participante` e `cod_categoria`.
+* inscricao_oficina (`cod_inscricao`, `cod_oficina`), FKs: `cod_inscricao` e `cod_oficina`.
 
 ## 4. FNBC: `planilha_fnbc`
 
