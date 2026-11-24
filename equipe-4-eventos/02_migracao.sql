@@ -44,6 +44,13 @@ INSERT INTO inscricao_oficina (cod_inscricao, cod_oficina)
 SELECT DISTINCT cod_inscricao, cod_oficina
 FROM planilha;
 
+-- Esperado: 4 | 6 | 2 | 4 | 4 | 9
+SELECT (SELECT COUNT(*) FROM participante)      AS participante,
+       (SELECT COUNT(*) FROM email)             AS email,
+       (SELECT COUNT(*) FROM categoria)         AS categoria,
+       (SELECT COUNT(*) FROM oficina)           AS oficina,
+       (SELECT COUNT(*) FROM inscricao)         AS inscricao,
+       (SELECT COUNT(*) FROM inscricao_oficina) AS inscricao_oficina;
 -- ========== FIM DO BLOCO: PLANILHA 1 (3FN) ==========
 
 -- =====================================================
