@@ -139,9 +139,22 @@ Agora, para acrescentar um idioma à Dra. Lia, é preciso inserir só **1 linha*
 
 ### 6.2 Modelo lógico (James Martin, pé de galinha)
 
-[Todas as tabelas finais com seus atributos, PK e FK, e as linhas de relacionamento com a cardinalidade nas pontas.]
+<!-- BLOCO: MODELO LOGICO - Pessoa 2 (Vitor) -->
+O modelo lógico mostra as 10 tabelas finais com colunas, tipos, PK e FK, separadas pelas 3 planilhas. Na notação James Martin, a ponta com duas barras (`||`) é o lado "exatamente um" e a ponta com bolinha e pé de galinha (`o<`) é o lado "zero ou muitos". A FK fica sempre na tabela do lado "muitos".
+
+| Planilha | Relacionamento | Cardinalidade | FK |
+| --- | --- | --- | --- |
+| 3FN | `participante` possui `email` | 1:N | `email.cod_participante` |
+| 3FN | `participante` faz `inscricao` | 1:N | `inscricao.cod_participante` |
+| 3FN | `categoria` classifica `inscricao` | 1:N | `inscricao.cod_categoria` |
+| 3FN | `inscricao` escolhe `oficina` (via `inscricao_oficina`) | N:N | `inscricao_oficina.cod_inscricao` e `inscricao_oficina.cod_oficina` |
+| FNBC | `mentor` acompanha `participante_mentor` | 1:N | `participante_mentor.mentor` |
+| 4FN | `palestrante_tema` e `palestrante_idioma` | sem FK | as duas tabelas se ligam pela coluna `palestrante` só na prova sem perda |
+
+O N:N entre inscrição e oficina não existe como linha direta no modelo lógico: ele vira a tabela associativa `inscricao_oficina`, com PK composta pelas duas FKs. Na 4FN não há tabela `palestrante` (decisão da equipe), por isso as duas tabelas não têm FK entre si.
 
 ![Modelo lógico](modelo_logico.png)
+<!-- FIM DO BLOCO: MODELO LOGICO -->
 
 ## 7. Dicionário de dados
 
