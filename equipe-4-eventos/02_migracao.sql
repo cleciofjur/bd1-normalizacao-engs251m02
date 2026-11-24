@@ -20,6 +20,30 @@ INSERT INTO oficina (cod_oficina, nome_oficina, sala)
 SELECT DISTINCT cod_oficina, nome_oficina, sala
 FROM planilha;
 
+-- E-mails (1FN): a coluna emails tem ate 2 valores separados por "; ".
+-- A tabela n gera as posicoes 1, 2, 3; o JOIN cria uma linha por posicao
+-- que existe na celula (qtd de e-mails = qtd de ";" + 1).
+-- SUBSTRING_INDEX(..., pos) pega tudo ate o pos-esimo e-mail e
+-- SUBSTRING_INDEX(..., -1) fica so com o ultimo deles; TRIM tira o espaco.
+-- ORDER BY garante que id_email (AUTO_INCREMENT) siga a ordem da planilha,
+-- e a prova sem perda remonta a celula nessa mesma ordem.
+INSERT INTO email (cod_participante, email)
+SELECT p.cod_participante,
+       TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(p.emails, ';', n.pos), ';', -1))
+FROM (SELECT DISTINCT cod_participante, emails FROM planilha) AS p
+JOIN (SELECT 1 AS pos UNION ALL SELECT 2 UNION ALL SELECT 3) AS n
+  ON n.pos <= LENGTH(p.emails) - LENGTH(REPLACE(p.emails, ';', '')) + 1
+ORDER BY p.cod_participante, n.pos;
+
+INSERT INTO inscricao (cod_inscricao, cod_participante, cod_categoria)
+SELECT DISTINCT cod_inscricao, cod_participante, cod_categoria
+FROM planilha;
+
+-- Tabela associativa: cada linha da planilha e um par (inscricao, oficina).
+INSERT INTO inscricao_oficina (cod_inscricao, cod_oficina)
+SELECT DISTINCT cod_inscricao, cod_oficina
+FROM planilha;
+
 -- ========== FIM DO BLOCO: PLANILHA 1 (3FN) ==========
 
 -- =====================================================
