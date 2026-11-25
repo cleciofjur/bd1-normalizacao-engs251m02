@@ -28,9 +28,9 @@ A demo acontece no slide 21, e o encerramento é o slide 22. Os slides explicam 
 
 | Tempo | Passo | Quem executa |
 |-------|-------|--------------|
-| 0:00 | Rodar `01_ddl.sql` | Clecio |
-| 2:00 | Rodar `02_migracao.sql` | Clecio |
-| 4:00 | Rodar `03_prova_sem_perda.sql` | Clecio |
+| 0:00 | Rodar `01_ddl.sql` | Marcos |
+| 2:00 | Rodar `02_migracao.sql` | Marcos |
+| 4:00 | Rodar `03_prova_sem_perda.sql` | Marcos |
 
 
 ## Antes de começar
