@@ -103,6 +103,9 @@ CREATE TABLE participante_mentor (
 -- =====================================================
 -- BLOCO: PLANILHA 3 (4FN) - responsavel: Pessoa 6 (Tais)
 -- =====================================================
+DROP TABLE IF EXISTS palestrante_tema;
+DROP TABLE IF EXISTS palestrante_idioma;
+
 CREATE TABLE palestrante_tema (
   palestrante VARCHAR(60) NOT NULL,
   tema VARCHAR(40) NOT NULL,
