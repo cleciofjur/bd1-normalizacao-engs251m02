@@ -344,7 +344,7 @@ WHERE NOT EXISTS (
 
 ### Conclusão
 
-A decomposição é incorreta porque não preserva a associação original entre mentor e trilha, desconsiderando a dependência funcional `mentor → trilha`.
+A decomposição é incorreta porque não preserva a associação original entre mentor e trilha, desconsiderando a dependência funcional `mentor → trilha`..
 
 Embora nenhuma linha original tenha sido removida, a junção gera 6 tuplas espúrias, impossibilitando a reconstrução exata da planilha original.
 
