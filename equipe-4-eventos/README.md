@@ -348,4 +348,4 @@ A decomposição é incorreta porque não preserva a associação original entre
 
 Embora nenhuma linha original tenha sido removida, a junção gera 6 tuplas espúrias, impossibilitando a reconstrução exata da planilha original.
 
-A decomposição correta em FNBC utiliza as tabelas `mentor(mentor, trilha)` e `participante_mentor(participante, mentor)`, permitindo reconstruir os 7 registros originais sem perda de informação ou geração de registros indevidos.
+A decomposição correta em FNBC utiliza as tabelas `mentor(mentor, trilha)` e `participante mentor(participante, mentor)`, permitindo reconstruir os 7 registros originais sem perda de informação ou geração de registros indevidos.
