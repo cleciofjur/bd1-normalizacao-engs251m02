@@ -9,18 +9,20 @@ Troca de funções: Marcos fez a migração e Eluana fez a prova sem perda.
 | Slides | Conteúdo | Quem fala |
 |--------|----------|-----------|
 | 1 a 3 | Capa, o problema e as três formas normais | Clecio |
-| 4 | Planilha 1: problemas e 3FN (anomalias e dependências funcionais) | Vitor |
-| 5 | 3FN: as 6 tabelas | Vitor |
-| 6 | 3FN: DDL e migração | Vitor (DDL) e Marcos (migração) |
-| 7 | 3FN: prova sem perda | Eluana |
-| 8 e 9 | 3FN: dicionário de dados (1/2 e 2/2) | Clecio |
-| 10 a 12 | Planilha 2 (FNBC): problema, tabelas, DDL, migração, prova e dicionário | Denys |
-| 13 a 15 | Planilha 3 (4FN): problema, tabelas, migração, prova e dicionário | Tais |
-| 16 | Resultado geral das três planilhas | Marcos |
-| 17 e 18 | Modelo conceitual (Peter Chen) | Raymond |
-| 19 e 20 | Modelo lógico (James Martin) | Vitor |
-| 21 | Demonstração e conclusão | Clecio conduz, todos participam |
-| 22 | Obrigado |  |
+| 4 | Planilha 1: como era antes (planilha original) | Clecio |
+| 5 | Planilhas 2 e 3: como eram antes (planilhas originais) | Clecio |
+| 6 | Planilha 1: problemas e 3FN (anomalias e dependências funcionais) | Vitor |
+| 7 | 3FN: as 6 tabelas | Vitor |
+| 8 | 3FN: DDL e migração | Vitor (DDL) e Marcos (migração) |
+| 9 | 3FN: prova sem perda | Eluana |
+| 10 e 11 | 3FN: dicionário de dados (1/2 e 2/2) | Clecio |
+| 12 a 14 | Planilha 2 (FNBC): problema, tabelas, DDL, migração, prova e dicionário | Denys |
+| 15 a 17 | Planilha 3 (4FN): problema, tabelas, migração, prova e dicionário | Tais |
+| 18 | Resultado geral das três planilhas | Marcos |
+| 19 e 20 | Modelo conceitual (Peter Chen) | Raymond |
+| 21 e 22 | Modelo lógico (James Martin) | Vitor |
+| 23 | Demonstração e conclusão | Marcos Conduz |
+| 24 | Obrigado |  |
 
 ## Execução (demo ao vivo: quem executa e mostra cada parte)
 
