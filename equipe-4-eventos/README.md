@@ -283,7 +283,7 @@ Uma decomposição incorreta da `planilha_fnbc` consiste em dividir a tabela ori
 
 **Chave primária composta:** (`participante`, `mentor`).
 
-### Consulta SQL da decomposição incorreta
+### Consulta SQL da decomposição incorreta 
 
 ```sql
 CREATE TABLE participante_trilha_errada AS
